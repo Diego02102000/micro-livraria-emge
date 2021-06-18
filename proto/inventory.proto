@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+service InventoryService {
+    rpc SearchAllProducts(Empty) returns (ProductsResponse) {}
+    rpc SearchProductByID(Payload) returns (ProductResponse) {}
+    rpc Comprar(Produto) returns (ProductsResponse) {}
+    rpc Adicionar(Produto) returns (ProductsResponse) {}
+}
+
+message Empty{}
+
+message Payload {
+    int32 id = 1;
+}
+
+message Produto{
+    int32 id = 1;
+    int32 quantity = 2;
+}
+
+
+message ProductResponse {
+    int32 id = 1;
+    string name = 2;
+    int32 quantity = 3;
+    float price = 4;
+    string photo = 5;
+    string author = 6;
+}
+
+message ProductsResponse {
+    repeated ProductResponse products = 1;
+}
